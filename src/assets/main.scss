@@ -1,0 +1,32 @@
+:root {
+  --theme-page-background-color: #1e0c1b;
+  --theme-body-background-color: #000000;
+  --theme-page-text-color: #e6e6e6;
+}
+
+body {
+  background-color: var(--theme-body-background-color);
+}
+
+#app {
+  max-width: 1280px;
+  height: 100vh;
+  margin: 0 auto;
+  padding: 2rem;
+  font-weight: normal;
+
+  background-color: var(--theme-page-background-color);
+  color: var(--theme-page-text-color);
+  margin-top: 12px;
+
+  table {
+    border-color: var(--theme-border-color);
+    border: 1px solid #a2a9b1;
+    border-collapse: collapse;
+    td, th {
+      border: 1px solid #a2a9b1;
+      padding: 0.2em 0.4em
+    }
+  }
+}
+
