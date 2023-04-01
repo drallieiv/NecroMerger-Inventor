@@ -76,38 +76,38 @@
             new UpgradeLevel(20000, "175% » 150%"),
             new UpgradeLevel(25000, "150% » 140%"),
           ]},
-          {id: 7, title: "Ice Chest Experiment", desc:"Increase all Damage.", image:"Experiments_7.png", levels: [
+          {id: 7, title: "Ice Chest Experiment", desc:"Increase the number of uses for Ice Chests.", image:"Experiments_7.png", levels: [
             new UpgradeLevel(10, "+1"),
             new UpgradeLevel(500, "+2"),
             new UpgradeLevel(1500, "+3"),
             new UpgradeLevel(5000, "+4"),
             new UpgradeLevel(10000, "+5"),
           ]},
-          {id: 8, title: "Poison Chest Experiment", desc:"Increase all Damage.", image:"Experiments_8.png", levels: [
+          {id: 8, title: "Poison Chest Experiment", desc:"Increase the number of uses for Poison Chests.", image:"Experiments_8.png", levels: [
             new UpgradeLevel(25, "+1"),
             new UpgradeLevel(1000, "+2"),
             new UpgradeLevel(3000, "+3"),
             new UpgradeLevel(7500, "+4"),
             new UpgradeLevel(12500, "+5"),
           ]},
-          {id: 9, title: "Blood Chest Experiment", desc:"Increase all Damage.", image:"Experiments_9.png", levels: [
+          {id: 9, title: "Blood Chest Experiment", desc:"Increase the number of uses for Cosmic Chest.", image:"Experiments_9.png", levels: [
             new UpgradeLevel(50, "+1"),
             new UpgradeLevel(2500, "+2"),
             new UpgradeLevel(5000, "+3"),
             new UpgradeLevel(10000, "+4 (max)"),
           ]},
-          {id: 10, title: "Moon Chest Experiment", desc:"Increase all Damage.", image:"Experiments_10.png", levels: [
+          {id: 10, title: "Moon Chest Experiment", desc:"Increase the number of uses for Cosmic Chest.", image:"Experiments_10.png", levels: [
             new UpgradeLevel(250, "+1"),
             new UpgradeLevel(3000, "+2"),
             new UpgradeLevel(7500, "+3"),
             new UpgradeLevel(15000, "+4 (max)"),
           ]},
-          {id: 11, title: "Death Chest Experiment", desc:"Increase all Damage.", image:"Experiments_11.png", levels: [
+          {id: 11, title: "Death Chest Experiment", desc:"Increase the number of uses for Death Chest.", image:"Experiments_11.png", levels: [
             new UpgradeLevel(500, "+1"),
             new UpgradeLevel(5000, "+2"),
             new UpgradeLevel(10000, "+3 (max)"),
           ]},
-          {id: 12, title: "Cosmic Chest Experiment", desc:"Increase all Damage.", image:"Experiments_12.png", levels: [
+          {id: 12, title: "Cosmic Chest Experiment", desc:"Increase the number of uses for Cosmic Chest.", image:"Experiments_12.png", levels: [
             new UpgradeLevel(5000, "+1"),
             new UpgradeLevel(10000, "+2"),
             new UpgradeLevel(15000, "+3"),
@@ -244,6 +244,8 @@
         </tbody>
       </table>
       <br/>
+      <p class="jnote">Note: 15 additional shards must be used at first prestige for the Inventor to spawn the Time Machine</p>
+      <br/>
       <table>
         <thead>
           <th>Inventions</th>
@@ -274,6 +276,10 @@
       margin-block-start: .5em;
       margin-block-end: .5em;
       line-height: 1;
+    }
+
+    p.jnote {
+      text-align: justify;
     }
 
     table {
