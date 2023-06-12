@@ -1,5 +1,6 @@
 <script setup lang="ts">
-  const version = APP_VERSION;
+  import InventorShards from '@/components/Inventor-shards.vue'
+  const version = APP_VERSION; 
 </script>
 <script lang="ts">
 
@@ -32,20 +33,20 @@
   export default {
     created() {
       let hash = this.$route.hash.replace('#','');
+
+      let offset = 1;
+
+      if(hash.length == 11) {
+        offset = 2;
+      }
+
       hash.split('').forEach((lvl, index) => {
-        console.log("WIP");
-        this.selectUpgrade(index+1, +lvl);
+        this.selectUpgrade(index+offset, +lvl);
       })
     },
     data() {
       return new InventorData(
         [
-          {id: 1, title: "Time Shard Experiment", desc:"Get more Time Shards from using the Time Machine.", image:"Experiments_2.png", levels: [
-            new UpgradeLevel(100,"0% » 75%"),
-            new UpgradeLevel(5000,"75% » 150%"),
-            new UpgradeLevel(15000,"150% » 225%"),
-            new UpgradeLevel(30000,"225% » 300%"),
-          ]},
           {id: 2, title: "Seasoning Experiment", desc:"Get more Food from Cravings.", image:"Experiments_3.png", levels: [
             new UpgradeLevel(50, "0% » 20%"),
             new UpgradeLevel(500, "20% » 40%"),
@@ -73,8 +74,8 @@
           {id: 6, title: "Weakening Experiment", desc:"Reduce the Protector's health scale..", image:"Experiments_6.png", levels: [
             new UpgradeLevel(7500, "500% » 250%"),
             new UpgradeLevel(15000, "250% » 175%"),
-            new UpgradeLevel(20000, "175% » 150%"),
-            new UpgradeLevel(25000, "150% » 140%"),
+            new UpgradeLevel(20000, "175% » 150% (Cost has changed)"),
+            new UpgradeLevel(25000, "150% » 140% (Cost has changed)"),
           ]},
           {id: 7, title: "Ice Chest Experiment", desc:"Increase the number of uses for Ice Chests.", image:"Experiments_7.png", levels: [
             new UpgradeLevel(10, "+1"),
@@ -190,6 +191,7 @@
 </script>
 
 <template>
+  <h1>Inventor Time Machine Helper</h1>
   <p>Here is an interactive tool based on <a href="https://necromerger.fandom.com/wiki/The_Inventor">https://necromerger.fandom.com/wiki/The_Inventor</a>.</p>
   <p>To bookmark or share this page with current values use this <a :href=bookmarkLink>link</a></p>
 
@@ -265,6 +267,10 @@
           </tr>
         </tbody>
       </table>
+      <!--
+        <br/>
+        <InventorShards/>
+      -->
     </div>
   </div>
   <div class="footer">App version : {{ version }}</div>

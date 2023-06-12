@@ -34,5 +34,15 @@ body {
   a {
     color: var(--theme-link-color);
   }
+
+  h1, h2 {
+    margin-block-start: 0;
+  }
+  h1 {
+    font-size: 1.3em;
+  }
+  h2 {
+    font-size: 1.1em;
+  }
 }
 
