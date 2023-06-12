@@ -33,15 +33,8 @@
   export default {
     created() {
       let hash = this.$route.hash.replace('#','');
-
-      let offset = 1;
-
-      if(hash.length == 11) {
-        offset = 2;
-      }
-
       hash.split('').forEach((lvl, index) => {
-        this.selectUpgrade(index+offset, +lvl);
+        this.selectUpgrade(index+1, +lvl);
       })
     },
     data() {
@@ -138,8 +131,9 @@
         return total;
       },
       hash() {
-        let selectionArray: number[] = new Array(this.upgrades.length);
-        for (let i=0; i < this.upgrades.length; i++) {
+        let max = this.upgrades.length + 1;
+        let selectionArray: number[] = new Array(max);
+        for (let i=0; i < max; i++) {
           selectionArray[i] = (this.selection.find(s => s.id - 1 == i) || new Selection(0, 0)).lvl;
         }
         return selectionArray.join('');
