@@ -67,8 +67,8 @@
           {id: 6, title: "Weakening Experiment", desc:"Reduce the Protector's health scale..", image:"Experiments_6.png", levels: [
             new UpgradeLevel(7500, "500% » 250%"),
             new UpgradeLevel(15000, "250% » 175%"),
-            new UpgradeLevel(20000, "175% » 150% (Cost has changed)"),
-            new UpgradeLevel(25000, "150% » 140% (Cost has changed)"),
+            new UpgradeLevel(20000, "175% » 150% \n (Cost has changed)"),
+            new UpgradeLevel(25000, "150% » 140% \n (Cost has changed)"),
           ]},
           {id: 7, title: "Ice Chest Experiment", desc:"Increase the number of uses for Ice Chests.", image:"Experiments_7.png", levels: [
             new UpgradeLevel(10, "+1"),
@@ -192,38 +192,42 @@
   <div class="inventorPlanner">
     <div class="inventorPlanner-table">
       <button @click="clearAll">Clear All</button>
-      <table>
-        <thead>
-          <th>Description</th>
-          <th class="level" v-for="level in 5" v-bind:key="level"> <img :src="'  img/Spellbook_L'+level+'.png'" width="64" height="36"> </th>
-        </thead>
-        <tbody>
-          <tr v-for="upgrade in upgrades" v-bind:key="upgrade.id">
-            <td>
-              <div style="display: flex;flex-direction: row;align-items: flex-start;">
-                <div class="upgradeImg" v-if="upgrade.image" style="flex-basis: 128px">
-                  <img :src="'img/' + upgrade.image" width="128" height="69">
+      <div class="inventorPlanner-table-fit">
+        <table>
+          <thead>
+            <th>Description</th>
+            <th class="level" v-for="level in 5" v-bind:key="level"> <img class="img-level" :src="'img/Spellbook_L'+level+'.png'"> </th>
+          </thead>
+          <tbody>
+            <tr v-for="upgrade in upgrades" v-bind:key="upgrade.id">
+              <td>
+                <div style="display: flex;flex-direction: row;align-items: flex-start;">
+                  <div class="upgradeImg" v-if="upgrade.image" style="flex-basis: 128px">
+                    <img :src="'img/' + upgrade.image" width="128" height="69">
+                  </div>
+                  <div style="flex-grow: 1; padding: 0 5px;">
+                  <b>{{upgrade.title}}</b>
+                  <span class="upgrade-desc">
+                    <br/>
+                    {{upgrade.desc}}
+                  </span>
+                  </div>
                 </div>
-                <div style="flex-grow: 1; padding: 0 5px;">
-                <b>{{upgrade.title}}</b>
-                <br/>
-                {{upgrade.desc}}
+              </td>
+              <td 
+                :class="{ 'selectable': upgrade.levels[level-1], 'active': isActive(upgrade,level) }" 
+                v-for="level in 5" v-bind:key="level"
+                @click="selectUpgradeAndRefresh(upgrade.id, level)">
+                <div v-if="upgrade.levels[level-1]">
+                  <img class="img-timeshard" src="/img/Time_Shard_Big.png" >
+                  -{{ formatCost(upgrade.levels[level-1].cost) }}
+                  <p class="effect">{{upgrade.levels[level-1].effect}}</p>
                 </div>
-              </div>
             </td>
-            <td 
-              :class="{ 'selectable': upgrade.levels[level-1], 'active': isActive(upgrade,level) }" 
-              v-for="level in 5" v-bind:key="level"
-              @click="selectUpgradeAndRefresh(upgrade.id, level)">
-              <div v-if="upgrade.levels[level-1]">
-                <img src="/img/Time_Shard_Big.png" width="25" height="25">
-                -{{ formatCost(upgrade.levels[level-1].cost) }}
-                <p class="effect">{{upgrade.levels[level-1].effect}}</p>
-              </div>
-           </td>
-          </tr>
-        </tbody>
-      </table>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
     <div class="inventorPlanner-summary">
       <table>
@@ -233,7 +237,7 @@
         <tbody>
           <tr>
             <td>
-              <img src="/img/Time_Shard_Big.png" width="25" height="25">
+              <img class="img-timeshard" src="/img/Time_Shard_Big.png" >
               {{ formatCost(totalCost) }}
             </td>
           </tr>
@@ -252,7 +256,7 @@
           <tr v-for="invention in inventions"  v-bind:key="invention.name">
             <td>{{invention.name}}</td>
             <td>
-              <img src="/img/Time_Shard_Big.png" width="25" height="25">
+              <img class="img-timeshard" src="/img/Time_Shard_Big.png" >
               {{ formatCost(invention.requirement) }}
             </td>
             <td style="font-weight:bold;">
@@ -272,6 +276,7 @@
 
 <style lang="scss">
   #app {
+
     p {
       margin-block-start: .5em;
       margin-block-end: .5em;
@@ -282,16 +287,23 @@
       text-align: justify;
     }
 
+    div.inventorPlanner-table-fit {
+      margin: 5px 0;
+    }
+
     table {
       margin: auto;
     }
-
 
     .inventorPlanner {
       display: flex;
       justify-content: space-around;
       flex-wrap: wrap;
       line-height: 1.75;
+
+      @media screen and (max-width: 900px) {
+        line-height: 1.2;
+      }
       
       .inventorPlanner-table {
         flex-basis: 900px;
@@ -307,6 +319,9 @@
 
       th.level {
         min-width: 80px;
+        @media screen and (max-width: 900px) {
+          min-width: 50px;
+        }
       }
 
       td {
@@ -329,6 +344,29 @@
 
       img {
         vertical-align: middle;
+
+        &.img-timeshard {
+          width: 25px;
+          height: 25px;
+        }
+
+        &.img-level {
+          width: 64px;
+          height: 36px;
+        }
+
+        @media screen and (max-width: 900px) {
+          &.img-timeshard {
+            width: 16px;
+            height: 16px;
+          }
+
+          &.img-level {
+            width: 32px;
+            height: 18px;
+          }
+        }
+
       }
 
       p.effect {
@@ -343,8 +381,18 @@
     @media screen and (max-width: 900px) {
       div.upgradeImg {
         display: none;
-      }  
+      }
+
+      font-size: .8em;
     }
+
+    @media screen and (max-width: 700px) {
+      span.upgrade-desc {
+        display: none;
+      }
+    }
+
+    
 
   }
 </style>
