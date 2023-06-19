@@ -67,8 +67,8 @@
           {id: 6, title: "Weakening Experiment", desc:"Reduce the Protector's health scale..", image:"Experiments_6.png", levels: [
             new UpgradeLevel(7500, "500% » 250%"),
             new UpgradeLevel(15000, "250% » 175%"),
-            new UpgradeLevel(20000, "175% » 150% \n (Cost has changed)"),
-            new UpgradeLevel(25000, "150% » 140% \n (Cost has changed)"),
+            new UpgradeLevel(25000, "175% » 150%"),
+            new UpgradeLevel(50000, "150% » 140%"),
           ]},
           {id: 7, title: "Ice Chest Experiment", desc:"Increase the number of uses for Ice Chests.", image:"Experiments_7.png", levels: [
             new UpgradeLevel(10, "+1"),
