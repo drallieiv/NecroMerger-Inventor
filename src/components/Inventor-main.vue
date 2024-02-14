@@ -186,7 +186,7 @@
 
 <template>
   <h1>Inventor Time Machine Helper</h1>
-  <p>Here is an interactive tool based on <a href="https://necromerger.fandom.com/wiki/The_Inventor">https://necromerger.fandom.com/wiki/The_Inventor</a>.</p>
+  <p>Here is an interactive tool based on <a href="https://necromerger.wiki.gg/wiki/The_Inventor">https://necromerger.wiki.gg/wiki/The_Inventor</a>.</p>
   <p>To bookmark or share this page with current values use this <a :href=bookmarkLink>link</a></p>
 
   <div class="inventorPlanner">
