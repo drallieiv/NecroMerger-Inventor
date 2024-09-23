@@ -42,9 +42,11 @@
       baseHash.split('').forEach((lvl, index) => {
         this.selectUpgrade(index+1, +lvl);
       })
-      advHash.split('').forEach((lvl, index) => {
-        this.selectUpgrade(index+100, +lvl);
-      })
+      if (advHash) {
+        advHash.split('').forEach((lvl, index) => {
+          this.selectUpgrade(index+100, +lvl);
+        })
+      }      
     },
     data() {
       return new InventorData(
@@ -116,7 +118,7 @@
 
             new UpgradeLevel(50000, "+6"),
             new UpgradeLevel(100000, "+7"),
-            new UpgradeLevel(500000, "+8"),
+            new UpgradeLevel(250000, "+8"),
             new UpgradeLevel(1000000, "+9"),
           ]},
           {id: 8, title: "Poison Chest Experiment", desc:"Increase the number of uses for Poison Chests.", image:"Experiments_8.png", levels: [
@@ -215,8 +217,8 @@
             new UpgradeLevel(1000000, "x2 » x3"),
             new UpgradeLevel(3000000, "x3 » x4"),
             new UpgradeLevel(5000000, "x4 » x5"),
-            new UpgradeLevel(1000000, "x5 » x6"),
-            new UpgradeLevel(2000000, "x6 » x7"),
+            new UpgradeLevel(10000000, "x5 » x6"),
+            new UpgradeLevel(20000000, "x6 » x7"),
             new UpgradeLevel(30000000, "x7 » x8"),
             new UpgradeLevel(50000000, "x8 » x9"),
             new UpgradeLevel(100000000, "x9 » x10"),
@@ -226,8 +228,8 @@
             new UpgradeLevel(1000000, "x1.1 » x1.2"),
             new UpgradeLevel(3000000, "x1.2 » x1.3"),
             new UpgradeLevel(5000000, "x1.3 » x1.4"),
-            new UpgradeLevel(1000000, "x1.5 » x1.5"),
-            new UpgradeLevel(2000000, "x1.5 » x1.6"),
+            new UpgradeLevel(10000000, "x1.5 » x1.5"),
+            new UpgradeLevel(20000000, "x1.5 » x1.6"),
             new UpgradeLevel(30000000, "x1.5 » x1.8"),
             new UpgradeLevel(50000000, "x1.8 » x1.9"),
             new UpgradeLevel(100000000, "x1.9 » x2"),
@@ -285,8 +287,8 @@
     },
     methods: {
       formatCost: function(cost: number): string {
-        if (cost >= 1000000 && Math.round(cost / 1000) * 1000 == cost) {
-          return Math.round(cost / 100000) / 10 + 'm';
+        if (cost >= 1000000 && Math.round(cost / 100000) * 100000 == cost) {
+          return Math.round(cost / 100) / 10000 + 'm';
         }
         if (cost >= 1000 && Math.round(cost / 100) * 100 == cost) {
           return Math.round(cost / 100) / 10 + 'k';
