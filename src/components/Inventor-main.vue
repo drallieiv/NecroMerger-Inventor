@@ -266,7 +266,7 @@
         return total;
       },
       hash() {
-        let max = this.upgrades.length + 1;
+        let max = this.upgrades.length;
         let selectionArray: number[] = new Array(max);
         for (let i=0; i < max; i++) {
           selectionArray[i] = (this.selection.find(s => s.id - 1 == i) || new Selection(0, 0)).lvl;
