@@ -10,7 +10,7 @@ body {
 }
 
 #app {
-  max-width: 1500px;
+  max-width: 1800px;
   height: 100%;
   min-height: 100vh;
   margin: 0 auto;
@@ -43,6 +43,19 @@ body {
   }
   h2 {
     font-size: 1.1em;
+  }
+
+  button {
+    background-color: #101f41;
+    border-radius: 2px;
+    border: 1px solid #90aed0;
+    padding: 5px 14px;
+    text-decoration: none;
+    margin: 4px 2px;
+    color: var(--theme-page-text-color);
+    font-weight: bold;
+    text-wrap: nowrap;
+    cursor: pointer;
   }
 }
 

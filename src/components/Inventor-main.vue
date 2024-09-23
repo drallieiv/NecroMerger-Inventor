@@ -1,13 +1,16 @@
 <script setup lang="ts">
-  import InventorShards from '@/components/Inventor-shards.vue'
   const version = APP_VERSION; 
 </script>
 <script lang="ts">
-
+  
   class InventorData {
     public selection: Selection[] = [];
+    public maxLvlDisplayed = 5;
 
-    constructor(public upgrades: Upgrade[], public inventions: Invention[]) {}
+    public displayLvlAbove5: boolean = false;
+    public displayLvl100Experiments: boolean = false;
+    
+    constructor(public upgrades: Upgrade[], public inventions: Invention[], public upgrades100: Upgrade[]) {}
   }
   class UpgradeLevel { 
     constructor(public cost: number, public effect: string) {}
@@ -33,26 +36,31 @@
   export default {
     created() {
       let hash = this.$route.hash.replace('#','');
-      hash.split('').forEach((lvl, index) => {
+      
+      let [baseHash, advHash] = hash.split('-');
+
+      baseHash.split('').forEach((lvl, index) => {
         this.selectUpgrade(index+1, +lvl);
+      })
+      advHash.split('').forEach((lvl, index) => {
+        this.selectUpgrade(index+100, +lvl);
       })
     },
     data() {
       return new InventorData(
         [
-          {id: 2, title: "Seasoning Experiment", desc:"Get more Food from Cravings.", image:"Experiments_3.png", levels: [
-            new UpgradeLevel(50, "0% » 20%"),
-            new UpgradeLevel(500, "20% » 40%"),
-            new UpgradeLevel(1000, "40% » 60%"),
-            new UpgradeLevel(2000, "60% » 80%"),
-            new UpgradeLevel(4000, "80% » 100%"),
-          ]},
-          {id: 3, title: "Capacity Experiment", desc:"Increase Mana, Slime and Darkness Caps.", image:"Experiments_4.png", levels: [
-            new UpgradeLevel(100,"0% » 5%"),
-            new UpgradeLevel(750,"5% » 10%"),
-            new UpgradeLevel(1500,"10% » 15%"),
-            new UpgradeLevel(2500,"15% » 20%"),
-            new UpgradeLevel(5000,"20% » 25%"),
+          {id: 1, title: "Seasoning Experiment", desc:"Get more Food when feeding the Devourer.", image:"Experiments_3.png", levels: [
+            new UpgradeLevel(25, "10% » 10%"),
+            new UpgradeLevel(250, "20% » 20%"),
+            new UpgradeLevel(750, "30% » 30%"),
+            new UpgradeLevel(1500, "40% » 40%"),
+            new UpgradeLevel(2500, "50% » 50%"),
+
+            new UpgradeLevel(10000, "60% » 60%"),
+            new UpgradeLevel(25000, "70% » 80%"),
+            new UpgradeLevel(75000, "80% » 100%"),
+            new UpgradeLevel(250000, "100% » 150%"),
+            
           ]},
           {id: 4, title: "Strength Experiment", desc:"Increase all Damage.", image:"Experiments_5.png", levels: [
             new UpgradeLevel(25, "0% » 10%"),
@@ -60,8 +68,37 @@
             new UpgradeLevel(750,"20% » 30%"),
             new UpgradeLevel(1500,"30% » 40%"),
             new UpgradeLevel(2500,"40% » 50%"),
+
+            new UpgradeLevel(10000,"50% » 560%"),
+            new UpgradeLevel(25000,"60% » 80%"),
+            new UpgradeLevel(75000,"80% » 100%"),
+            new UpgradeLevel(250000,"100% » 150%"),
           ]},
-          {id: 5, title: "Body Snatcher", desc:"The Body Snatcher will start appearing in the Lair.", levels: [
+          {id: 2, title: "Taste Experiment", desc:"Get more Food from Cravings.", image:"Experiments_1.png", levels: [
+            new UpgradeLevel(50, "0% » 20%"),
+            new UpgradeLevel(500, "20% » 40%"),
+            new UpgradeLevel(1000, "40% » 60%"),
+            new UpgradeLevel(2000, "60% » 80%"),
+            new UpgradeLevel(4000, "80% » 100%"),
+
+            new UpgradeLevel(20000, "100% » 125%"),
+            new UpgradeLevel(50000, "125% » 150%"),
+            new UpgradeLevel(100000, "150% » 200%"),
+            new UpgradeLevel(500000, "200% » 300%"),
+          ]},
+          {id: 3, title: "Capacity Experiment", desc:"Increase Mana, Slime and Darkness Caps.", image:"Experiments_4.png", levels: [
+            new UpgradeLevel(100,"0% » 5%"),
+            new UpgradeLevel(750,"5% » 10%"),
+            new UpgradeLevel(1500,"10% » 15%"),
+            new UpgradeLevel(2500,"15% » 20%"),
+            new UpgradeLevel(5000,"20% » 25%"),
+
+            new UpgradeLevel(25000,"25% » 30%"),
+            new UpgradeLevel(75000,"30% » 35%"),
+            new UpgradeLevel(150000,"35% » 40%"),
+            new UpgradeLevel(750000,"40% » 50%"),
+          ]},
+          {id: 5, title: "Body Snatcher", desc:"The Body Snatcher will start appearing in the Lair.", image:"Experiments_BS.png", levels: [
             new UpgradeLevel(50, ""),
           ]},
           {id: 6, title: "Weakening Experiment", desc:"Reduce the Protector's health scale..", image:"Experiments_6.png", levels: [
@@ -76,6 +113,11 @@
             new UpgradeLevel(1500, "+3"),
             new UpgradeLevel(5000, "+4"),
             new UpgradeLevel(10000, "+5"),
+
+            new UpgradeLevel(50000, "+6"),
+            new UpgradeLevel(100000, "+7"),
+            new UpgradeLevel(500000, "+8"),
+            new UpgradeLevel(1000000, "+9"),
           ]},
           {id: 8, title: "Poison Chest Experiment", desc:"Increase the number of uses for Poison Chests.", image:"Experiments_8.png", levels: [
             new UpgradeLevel(25, "+1"),
@@ -83,34 +125,113 @@
             new UpgradeLevel(3000, "+3"),
             new UpgradeLevel(7500, "+4"),
             new UpgradeLevel(12500, "+5"),
+
+            new UpgradeLevel(75000, "+6"),
+            new UpgradeLevel(150000, "+7"),
+            new UpgradeLevel(500000, "+8"),
+            new UpgradeLevel(1500000, "+9"),
           ]},
-          {id: 9, title: "Blood Chest Experiment", desc:"Increase the number of uses for Cosmic Chest.", image:"Experiments_9.png", levels: [
+          {id: 9, title: "Blood Chest Experiment", desc:"Increase the number of uses for Blood Chest.", image:"Experiments_9.png", levels: [
             new UpgradeLevel(50, "+1"),
             new UpgradeLevel(2500, "+2"),
             new UpgradeLevel(5000, "+3"),
-            new UpgradeLevel(10000, "+4 (max)"),
+            new UpgradeLevel(10000, "+4"),
+
+            new UpgradeLevel(50000, "+5"),
+            new UpgradeLevel(100000, "+6"),
+            new UpgradeLevel(250000, "+7"),
+            new UpgradeLevel(750000, "+8"),
+            new UpgradeLevel(2500000, "+9"),
+            
           ]},
-          {id: 10, title: "Moon Chest Experiment", desc:"Increase the number of uses for Cosmic Chest.", image:"Experiments_10.png", levels: [
+          {id: 10, title: "Moon Chest Experiment", desc:"Increase the number of uses for Moon Chest.", image:"Experiments_10.png", levels: [
             new UpgradeLevel(250, "+1"),
             new UpgradeLevel(3000, "+2"),
             new UpgradeLevel(7500, "+3"),
-            new UpgradeLevel(15000, "+4 (max)"),
+            new UpgradeLevel(15000, "+4"),
+
+            new UpgradeLevel(75000, "+5"),
+            new UpgradeLevel(150000, "+6"),
+            new UpgradeLevel(500000, "+7"),
+            new UpgradeLevel(1000000, "+8"),
+            new UpgradeLevel(5000000, "+9"),
           ]},
           {id: 11, title: "Death Chest Experiment", desc:"Increase the number of uses for Death Chest.", image:"Experiments_11.png", levels: [
             new UpgradeLevel(500, "+1"),
             new UpgradeLevel(5000, "+2"),
-            new UpgradeLevel(10000, "+3 (max)"),
+            new UpgradeLevel(10000, "+3"),
+
+            new UpgradeLevel(50000, "+4"),
+            new UpgradeLevel(150000, "+5"),
+            new UpgradeLevel(500000, "+6"),
+            new UpgradeLevel(1000000, "+7"),
+            new UpgradeLevel(5000000, "+8"),
+            new UpgradeLevel(10000000, "+9"),
           ]},
           {id: 12, title: "Cosmic Chest Experiment", desc:"Increase the number of uses for Cosmic Chest.", image:"Experiments_12.png", levels: [
             new UpgradeLevel(5000, "+1"),
             new UpgradeLevel(10000, "+2"),
             new UpgradeLevel(15000, "+3"),
+
+            new UpgradeLevel(75000, "+4"),
+            new UpgradeLevel(250000, "+5"),
+            new UpgradeLevel(1000000, "+6"),
+            new UpgradeLevel(5000000, "+7"),
+            new UpgradeLevel(10000000, "+8"),
+            new UpgradeLevel(25000000, "+9"),
           ]},
         ],
         [
           {name: "Serv-O", requirement: 250},
           {name: "Stab-O", requirement: 5000},
           {name: "Split-O", requirement: 20000},
+          {name: "Store-o ", requirement: 75000},
+        ],
+        [
+          {id: 101, title: "Seasoning Experiment", desc:"Get more Food when feeding the Devourer.", image:"Experiments_101.png", levels: [
+            new UpgradeLevel(100000, "x1 » x3"),
+            new UpgradeLevel(500000, "x3 » x5"),
+            new UpgradeLevel(1000000, "x5 » x7"),
+            new UpgradeLevel(2000000, "x7 » x9"),
+            new UpgradeLevel(3000000, "x9 » x12"),
+            new UpgradeLevel(5000000, "x12 » x15"),
+            new UpgradeLevel(10000000, "x15 » x18"),
+            new UpgradeLevel(20000000, "x18 » x21"),
+            new UpgradeLevel(50000000, "x21 » x25"),
+          ]},
+          {id: 102, title: "Strength Experiment", desc:"Increase all Damage.", image:"Experiments_102.png", levels: [
+            new UpgradeLevel(100000, "x1 » x1.2"),
+            new UpgradeLevel(500000, "x1.2 » x1.4"),
+            new UpgradeLevel(1000000, "x1.4 » x1.6"),
+            new UpgradeLevel(2000000, "x1.6 » x1.8"),
+            new UpgradeLevel(3000000, "x1.8 » x2"),
+            new UpgradeLevel(5000000, "x2 » x2.2"),
+            new UpgradeLevel(10000000, "x2.2 » x2.4"),
+            new UpgradeLevel(20000000, "x2.4 » x2.6"),
+            new UpgradeLevel(50000000, "x2.6 » x3"),
+          ]},
+          {id: 103,  title: "Taste Experiment", desc:"Get more Food from Cravings.", image:"Experiments_103.png", levels: [
+            new UpgradeLevel(200000, "x1 » x2"),
+            new UpgradeLevel(1000000, "x2 » x3"),
+            new UpgradeLevel(3000000, "x3 » x4"),
+            new UpgradeLevel(5000000, "x4 » x5"),
+            new UpgradeLevel(1000000, "x5 » x6"),
+            new UpgradeLevel(2000000, "x6 » x7"),
+            new UpgradeLevel(30000000, "x7 » x8"),
+            new UpgradeLevel(50000000, "x8 » x9"),
+            new UpgradeLevel(100000000, "x9 » x10"),
+          ]},
+          {id: 104, title: "Capacity Experiment", desc:"Increase Mana, Slime and Darkness Caps.", image:"Experiments_104.png", levels: [
+            new UpgradeLevel(100000, "x1 » x1.1"),
+            new UpgradeLevel(1000000, "x1.1 » x1.2"),
+            new UpgradeLevel(3000000, "x1.2 » x1.3"),
+            new UpgradeLevel(5000000, "x1.3 » x1.4"),
+            new UpgradeLevel(1000000, "x1.5 » x1.5"),
+            new UpgradeLevel(2000000, "x1.5 » x1.6"),
+            new UpgradeLevel(30000000, "x1.5 » x1.8"),
+            new UpgradeLevel(50000000, "x1.8 » x1.9"),
+            new UpgradeLevel(100000000, "x1.9 » x2"),
+          ]}
         ]
       )
     },
@@ -118,6 +239,18 @@
       totalCost() {
         let total = 0;
         this.upgrades.forEach(upgrade => {
+          let hasSelection = this.selection.find(s => s.id == upgrade.id);
+          if (hasSelection) {
+            let selectedLevel = hasSelection.lvl;
+            upgrade.levels.forEach((lvl, index) => {
+              if (index < selectedLevel) {
+                total += lvl.cost;
+              }
+            })
+          }
+        });
+
+        this.upgrades100.forEach(upgrade => {
           let hasSelection = this.selection.find(s => s.id == upgrade.id);
           if (hasSelection) {
             let selectedLevel = hasSelection.lvl;
@@ -138,12 +271,23 @@
         }
         return selectionArray.join('');
       },
+      hash100(){
+        let max = this.upgrades100.length + 100;
+        let selectionArray: number[] = new Array(max);
+        for (let i=100; i < max; i++) {
+          selectionArray[i] = (this.selection.find(s => s.id - 1 == i) || new Selection(0, 0)).lvl;
+        }
+        return selectionArray.join('');
+      },
       bookmarkLink() {
         return import.meta.env.BASE_URL.replace(/\/$/, '') + this.$route.fullPath
       }
     },
     methods: {
       formatCost: function(cost: number): string {
+        if (cost >= 1000000 && Math.round(cost / 1000) * 1000 == cost) {
+          return Math.round(cost / 100000) / 10 + 'm';
+        }
         if (cost >= 1000 && Math.round(cost / 100) * 100 == cost) {
           return Math.round(cost / 100) / 10 + 'k';
         }
@@ -153,8 +297,10 @@
         // Set value
         this.selectUpgrade(upgradeId, level);
 
+        let fullHash = this.hash + "-" + this.hash100;
+
         // Call hash update
-        this.$router.replace({ hash: '#' + this.hash })
+        this.$router.replace({ hash: '#' + fullHash })
       },
       selectUpgrade(upgradeId: number, level: number) {
         let prevSelection = this.selection.find(s => s.id == upgradeId);
@@ -175,6 +321,13 @@
         // Call hash update
         this.$router.replace({ hash: undefined })
       },
+      showLvlAbove5() {
+        this.displayLvlAbove5 = true;
+        this.maxLvlDisplayed = 9;
+      },
+      showLvl100Experiments() {
+        this.displayLvl100Experiments = true;
+      },
       isActive(upgrade:Upgrade, level:number): boolean {
         let selected = this.selection.find(s => s.id == upgrade.id);
         let isActive:boolean = !! selected && selected.lvl >= level;
@@ -186,7 +339,10 @@
 
 <template>
   <h1>Inventor Time Machine Helper</h1>
-  <p>Here is an interactive tool based on <a href="https://necromerger.wiki.gg/wiki/The_Inventor">https://necromerger.wiki.gg/wiki/The_Inventor</a>.</p>
+  <p>
+    Here is an interactive tool based on <a href="https://necromerger.wiki.gg/wiki/The_Inventor">https://necromerger.wiki.gg/wiki/The_Inventor</a>.
+    Improved by Discord community members contribution.
+  </p>
   <p>To bookmark or share this page with current values use this <a :href=bookmarkLink>link</a></p>
 
   <div class="inventorPlanner">
@@ -196,19 +352,19 @@
         <table>
           <thead>
             <th>Description</th>
-            <th class="level" v-for="level in 5" v-bind:key="level"> <img class="img-level" :src="'img/Spellbook_L'+level+'.png'"> </th>
+            <th class="level" v-for="level in maxLvlDisplayed" v-bind:key="level"> <img class="img-level" :src="'img/ExLvl_'+level+'.png'"> </th>
+            <th v-if="displayLvlAbove5 == false"><button @click="showLvlAbove5">See More</button></th>
           </thead>
           <tbody>
             <tr v-for="upgrade in upgrades" v-bind:key="upgrade.id">
               <td>
-                <div style="display: flex;flex-direction: row;align-items: flex-start;">
+                <div class="description-box">
                   <div class="upgradeImg" v-if="upgrade.image" style="flex-basis: 128px">
                     <img :src="'img/' + upgrade.image" width="128" height="69">
                   </div>
-                  <div style="flex-grow: 1; padding: 0 5px;">
+                  <div class="title-and-desc">
                   <b>{{upgrade.title}}</b>
                   <span class="upgrade-desc">
-                    <br/>
                     {{upgrade.desc}}
                   </span>
                   </div>
@@ -216,15 +372,49 @@
               </td>
               <td 
                 :class="{ 'selectable': upgrade.levels[level-1], 'active': isActive(upgrade,level) }" 
-                v-for="level in 5" v-bind:key="level"
+                v-for="level in maxLvlDisplayed" v-bind:key="level"
                 @click="selectUpgradeAndRefresh(upgrade.id, level)">
                 <div v-if="upgrade.levels[level-1]">
                   <img class="img-timeshard" src="/img/Time_Shard_Big.png" >
                   -{{ formatCost(upgrade.levels[level-1].cost) }}
                   <p class="effect">{{upgrade.levels[level-1].effect}}</p>
                 </div>
-            </td>
+              </td>
+              <td v-if="displayLvlAbove5 == false"></td>
             </tr>
+            <tr v-if="!displayLvl100Experiments">
+              <td :colspan=maxLvlDisplayed+1><button @click="showLvl100Experiments">Show Lvl 100+ Content</button></td>
+            </tr>
+
+            <template v-if="displayLvl100Experiments">
+              <tr><td :colspan=maxLvlDisplayed+1>Lvl 100+ Experiments</td></tr>
+              <tr v-for="upgrade in upgrades100" v-bind:key="upgrade.id">
+                <td>
+                  <div class="description-box">
+                    <div class="upgradeImg" v-if="upgrade.image" style="flex-basis: 128px">
+                      <img :src="'img/' + upgrade.image" width="128" height="69">
+                    </div>
+                    <div class="title-and-desc">
+                    <b>{{upgrade.title}}</b>
+                    <span class="upgrade-desc">
+                      {{upgrade.desc}}
+                    </span>
+                    </div>
+                  </div>
+                </td>
+                <td 
+                  :class="{ 'selectable': upgrade.levels[level-1], 'active': isActive(upgrade,level) }" 
+                  v-for="level in maxLvlDisplayed" v-bind:key="level"
+                  @click="selectUpgradeAndRefresh(upgrade.id, level)">
+                  <div v-if="upgrade.levels[level-1]">
+                    <img class="img-timeshard" src="/img/Time_Shard_Big.png" >
+                    -{{ formatCost(upgrade.levels[level-1].cost) }}
+                    <p class="effect">{{upgrade.levels[level-1].effect}}</p>
+                  </div>
+                </td>
+                <td v-if="displayLvlAbove5 == false"></td>
+              </tr>
+            </template>
           </tbody>
         </table>
       </div>
@@ -306,7 +496,8 @@
       }
       
       .inventorPlanner-table {
-        flex-basis: 900px;
+        overflow-x: auto;
+        flex-basis: 1200px;
         table {
           width: 100%;
         }
@@ -376,6 +567,23 @@
 
     .footer {
       text-align: right;
+    }
+
+    .description-box {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+    }
+
+    .title-and-desc {
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1; 
+      padding: 0 5px;
+    }
+
+    span.upgrade-desc {
+      line-height: 1em;
     }
 
     @media screen and (max-width: 900px) {
