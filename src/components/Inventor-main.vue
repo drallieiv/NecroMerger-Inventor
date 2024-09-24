@@ -52,14 +52,14 @@
       return new InventorData(
         [
           {id: 1, title: "Seasoning Experiment", desc:"Get more Food when feeding the Devourer.", image:"Experiments_3.png", levels: [
-            new UpgradeLevel(25, "10% » 10%"),
-            new UpgradeLevel(250, "20% » 20%"),
-            new UpgradeLevel(750, "30% » 30%"),
-            new UpgradeLevel(1500, "40% » 40%"),
-            new UpgradeLevel(2500, "50% » 50%"),
+            new UpgradeLevel(25, "0% » 10%"),
+            new UpgradeLevel(250, "10% » 20%"),
+            new UpgradeLevel(750, "20% » 30%"),
+            new UpgradeLevel(1500, "30% » 40%"),
+            new UpgradeLevel(2500, "40% » 50%"),
 
-            new UpgradeLevel(10000, "60% » 60%"),
-            new UpgradeLevel(25000, "70% » 80%"),
+            new UpgradeLevel(10000, "50% » 60%"),
+            new UpgradeLevel(25000, "60% » 80%"),
             new UpgradeLevel(75000, "80% » 100%"),
             new UpgradeLevel(250000, "100% » 150%"),
             
