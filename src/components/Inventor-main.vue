@@ -224,7 +224,7 @@
             new UpgradeLevel(100000000, "x9 » x10"),
           ]},
           {id: 104, title: "Capacity Experiment", desc:"Increase Mana, Slime and Darkness Caps.", image:"Experiments_104.png", levels: [
-            new UpgradeLevel(100000, "x1 » x1.1"),
+            new UpgradeLevel(200000, "x1 » x1.1"),
             new UpgradeLevel(1000000, "x1.1 » x1.2"),
             new UpgradeLevel(3000000, "x1.2 » x1.3"),
             new UpgradeLevel(5000000, "x1.3 » x1.4"),
