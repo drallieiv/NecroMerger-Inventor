@@ -44,7 +44,7 @@
       })
       if (advHash) {
         advHash.split('').forEach((lvl, index) => {
-          this.selectUpgrade(index+100, +lvl);
+          this.selectUpgrade(index+101, +lvl);
         })
       }      
     },

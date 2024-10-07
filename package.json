@@ -1,6 +1,6 @@
 {
   "name": "necromerger-inventor-planner",
-  "version": "3.1.6",
+  "version": "1.6.2",
   "private": true,
   "scripts": {
     "dev": "vite",
