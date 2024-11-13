@@ -228,7 +228,7 @@
             new UpgradeLevel(1000000, "x1.1 » x1.2"),
             new UpgradeLevel(3000000, "x1.2 » x1.3"),
             new UpgradeLevel(5000000, "x1.3 » x1.4"),
-            new UpgradeLevel(10000000, "x1.5 » x1.5"),
+            new UpgradeLevel(10000000, "x1.4 » x1.5"),
             new UpgradeLevel(20000000, "x1.5 » x1.6"),
             new UpgradeLevel(30000000, "x1.5 » x1.8"),
             new UpgradeLevel(50000000, "x1.8 » x1.9"),
