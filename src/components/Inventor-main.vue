@@ -108,6 +108,11 @@
             new UpgradeLevel(15000, "250% » 175%"),
             new UpgradeLevel(25000, "175% » 150%"),
             new UpgradeLevel(50000, "150% » 140%"),
+
+            new UpgradeLevel(500000, "140% » 135%"),
+            new UpgradeLevel(5000000, "135% » 130%"),
+            new UpgradeLevel(25000000, "130% » 127%"),
+            new UpgradeLevel(100000000, "127% » 125%"),
           ]},
           {id: 7, title: "Ice Chest Experiment", desc:"Increase the number of uses for Ice Chests.", image:"Experiments_7.png", levels: [
             new UpgradeLevel(10, "+1"),
