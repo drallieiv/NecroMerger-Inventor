@@ -71,7 +71,7 @@
             new UpgradeLevel(1500,"30% » 40%"),
             new UpgradeLevel(2500,"40% » 50%"),
 
-            new UpgradeLevel(10000,"50% » 560%"),
+            new UpgradeLevel(10000,"50% » 60%"),
             new UpgradeLevel(25000,"60% » 80%"),
             new UpgradeLevel(75000,"80% » 100%"),
             new UpgradeLevel(250000,"100% » 150%"),
