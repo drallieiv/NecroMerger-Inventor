@@ -103,7 +103,7 @@
           {id: 5, title: "Body Snatcher", desc:"The Body Snatcher will start appearing in the Lair.", image:"Experiments_BS.png", levels: [
             new UpgradeLevel(50, ""),
           ]},
-          {id: 6, title: "Weakening Experiment", desc:"Reduce the Protector's health scale..", image:"Experiments_6.png", levels: [
+          {id: 6, title: "Weakening Experiment", desc:"Reduce the Protector's health scale.", image:"Experiments_6.png", levels: [
             new UpgradeLevel(7500, "500% » 250%"),
             new UpgradeLevel(15000, "250% » 175%"),
             new UpgradeLevel(25000, "175% » 150%"),
@@ -113,6 +113,11 @@
             new UpgradeLevel(5000000, "135% » 130%"),
             new UpgradeLevel(25000000, "130% » 127%"),
             new UpgradeLevel(100000000, "127% » 125%"),
+          ]},
+          {id: 13, title: "Damage Cap Experiment", desc:"Increase the Mech's Damage Cap Scale.", image:"Experiments_13.png", levels: [
+            new UpgradeLevel(25000, "50% » 65%"),
+            new UpgradeLevel(1000000, "65% » 75%"),
+            new UpgradeLevel(50000000, "75% » 80%"),
           ]},
           {id: 7, title: "Ice Chest Experiment", desc:"Increase the number of uses for Ice Chests.", image:"Experiments_7.png", levels: [
             new UpgradeLevel(10, "+1"),
@@ -195,18 +200,18 @@
           {name: "Store-o ", requirement: 75000},
         ],
         [
-          {id: 101, title: "Seasoning Experiment", desc:"Get more Food when feeding the Devourer.", image:"Experiments_101.png", levels: [
-            new UpgradeLevel(100000, "x1 » x3"),
-            new UpgradeLevel(500000, "x3 » x5"),
-            new UpgradeLevel(1000000, "x5 » x7"),
-            new UpgradeLevel(2000000, "x7 » x9"),
-            new UpgradeLevel(3000000, "x9 » x12"),
-            new UpgradeLevel(5000000, "x12 » x15"),
-            new UpgradeLevel(10000000, "x15 » x18"),
-            new UpgradeLevel(20000000, "x18 » x21"),
-            new UpgradeLevel(50000000, "x21 » x25"),
+          {id: 101, title: "Seasoning Experiment II", desc:"Get more Food when feeding the Devourer. (Includes Guzzlers)", image:"Experiments_101.png", levels: [
+            new UpgradeLevel(100000, "x1 » x5"),
+            new UpgradeLevel(500000, "x5 » x10"),
+            new UpgradeLevel(1000000, "x10 » x15"),
+            new UpgradeLevel(2000000, "x15 » x20"),
+            new UpgradeLevel(3000000, "x20 » x25"),
+            new UpgradeLevel(5000000, "x25 » x30"),
+            new UpgradeLevel(10000000, "x30 » x35"),
+            new UpgradeLevel(20000000, "x35 » x40"),
+            new UpgradeLevel(50000000, "x40 » x50"),
           ]},
-          {id: 102, title: "Strength Experiment", desc:"Increase all Damage.", image:"Experiments_102.png", levels: [
+          {id: 102, title: "Strength Experiment II", desc:"Increase all Damage. (Includes Cherubs)", image:"Experiments_102.png", levels: [
             new UpgradeLevel(100000, "x1 » x1.2"),
             new UpgradeLevel(500000, "x1.2 » x1.4"),
             new UpgradeLevel(1000000, "x1.4 » x1.6"),
@@ -217,7 +222,7 @@
             new UpgradeLevel(20000000, "x2.4 » x2.6"),
             new UpgradeLevel(50000000, "x2.6 » x3"),
           ]},
-          {id: 103,  title: "Taste Experiment", desc:"Get more Food from Cravings.", image:"Experiments_103.png", levels: [
+          {id: 103,  title: "Taste Experiment II", desc:"Get more Food from Cravings.", image:"Experiments_103.png", levels: [
             new UpgradeLevel(200000, "x1 » x2"),
             new UpgradeLevel(1000000, "x2 » x3"),
             new UpgradeLevel(3000000, "x3 » x4"),
@@ -228,7 +233,7 @@
             new UpgradeLevel(50000000, "x8 » x9"),
             new UpgradeLevel(100000000, "x9 » x10"),
           ]},
-          {id: 104, title: "Capacity Experiment", desc:"Increase Mana, Slime and Darkness Caps.", image:"Experiments_104.png", levels: [
+          {id: 104, title: "Capacity Experiment II", desc:"Increase Mana, Slime and Darkness Caps.", image:"Experiments_104.png", levels: [
             new UpgradeLevel(200000, "x1 » x1.1"),
             new UpgradeLevel(1000000, "x1.1 » x1.2"),
             new UpgradeLevel(3000000, "x1.2 » x1.3"),
